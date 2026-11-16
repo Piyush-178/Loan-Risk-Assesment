@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Risk Assessment — ML Predictor</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>🏦 Loan Risk Assessment</h1>
+      <p class="tagline">Machine-learning powered prediction of loan default risk</p>
+    </div>
+    <div class="badge" id="modelBadge">Loading model info…</div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- ------------------------- FORM ------------------------- -->
+  <section class="card">
+    <h2>Applicant Details</h2>
+
+    <div class="samples">
+      <span>Try a sample:</span>
+      <button type="button" class="chip chip-green" id="sampleSafe">✔ Safe applicant</button>
+      <button type="button" class="chip chip-red" id="sampleRisky">⚠ Risky applicant</button>
+    </div>
+
+    <form id="riskForm" novalidate>
+      <div class="grid">
+        <label>Age
+          <input type="number" id="age" min="18" max="100" value="32" required>
+        </label>
+        <label>Employment Type
+          <select id="employment_type">
+            <option>Salaried</option>
+            <option>Self-Employed</option>
+            <option>Business</option>
+          </select>
+        </label>
+
+        <label>Annual Income (₹)
+          <input type="number" id="annual_income" min="10000" step="1000" value="850000" required>
+        </label>
+        <label>Employment Years
+          <input type="number" id="employment_years" min="0" max="50" step="0.5" value="6" required>
+        </label>
+
+        <label class="span2">Credit Score — <span class="val" id="creditVal">742</span>
+          <div class="slider-row">
+            <input type="range" id="credit_score_range" min="300" max="900" value="742">
+            <input type="number" id="credit_score" min="300" max="900" value="742" required>
+          </div>
+          <small class="hint">300 = poor · 900 = excellent</small>
+        </label>
+
+        <label>Existing Loans
+          <input type="number" id="existing_loans" min="0" max="20" value="1" required>
+        </label>
+        <label>Loan Purpose
+          <select id="loan_purpose">
+            <option>Personal</option>
+            <option>Home</option>
+            <option>Education</option>
+            <option>Business</option>
+            <option>Vehicle</option>
+            <option>Medical</option>
+          </select>
+        </label>
+
+        <label>Loan Amount (₹)
+          <input type="number" id="loan_amount" min="1000" step="1000" value="500000" required>
+        </label>
+        <label>Tenure (months)
+          <select id="loan_tenure_months">
+            <option>12</option>
+            <option>24</option>
+            <option selected>36</option>
+            <option>48</option>
+            <option>60</option>
+            <option>84</option>
+          </select>
+        </label>
+
+        <label class="span2">Debt-to-Income Ratio — <span class="val" id="dtiVal">28%</span>
+          <div class="slider-row">
+            <input type="range" id="dti_range" min="0" max="100" value="28">
+            <input type="number" id="dti_percent" min="0" max="100" step="1" value="28" required>
+          </div>
+          <small class="hint">Share of monthly income already going to debt payments</small>
+        </label>
+      </div>
+
+      <div class="error-box" id="errorBox" hidden></div>
+      <button type="submit" class="cta" id="submitBtn">
+        <span id="btnText">Assess Risk</span>
+        <span class="spinner" id="btnSpinner" hidden></span>
+      </button>
+    </form>
+  </section>
+
+  <!-- ------------------------- RESULT ------------------------- -->
+  <section class="card result-card">
+    <h2>Risk Report</h2>
+
+    <div id="placeholder" class="placeholder">
+      <div class="placeholder-icon">📊</div>
+      <p>Fill in the applicant's details and click <b>Assess Risk</b>.<br>
+      The ML model will score the application instantly.</p>
+    </div>
+
+    <div id="result" hidden>
+      <div class="gauge-wrap">
+        <svg class="gauge" viewBox="0 0 200 200">
+          <circle class="gauge-bg" cx="100" cy="100" r="84"></circle>
+          <circle class="gauge-fill" id="gaugeFill" cx="100" cy="100" r="84"></circle>
+        </svg>
+        <div class="gauge-center">
+          <div class="gauge-pct" id="riskPct">0%</div>
+          <div class="gauge-label">default risk</div>
+        </div>
+      </div>
+
+      <div class="category" id="categoryChip">—</div>
+      <p class="recommendation" id="recommendation"></p>
+
+      <h3>Key factors</h3>
+      <ul class="factors" id="factorList"></ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Educational ML project · Model trained on 5,000 applicant records ·
+  Logistic Regression (ROC-AUC 0.815) · Not a real lending decision.
+</footer>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
