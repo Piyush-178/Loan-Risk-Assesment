@@ -129,5 +129,5 @@ loan-risk-assessment/
 
 ---
 *Built by* 
-*Piyush Chouhan — B.Tech CSE (AI & ML), LNCTS Bhopal*
+*Piyush Chouhan — B.Tech CSE (AI & ML), LNCTS Bhopal* , 
 *Mohit Sahu — B.Tech CSE (AI & ML), LNCTS Bhopal*
