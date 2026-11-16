@@ -128,4 +128,6 @@ loan-risk-assessment/
 - Validate on a public real dataset (e.g., UCI German Credit) and compare
 
 ---
-*Built by Piyush Chouhan — B.Tech CSE (AI & ML), LNCTS Bhopal*
+*Built by* 
+*Piyush Chouhan — B.Tech CSE (AI & ML), LNCTS Bhopal*
+*Mohit Sahu — B.Tech CSE (AI & ML), LNCTS Bhopal*
